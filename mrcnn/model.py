@@ -716,8 +716,11 @@ def refine_detections_graph(rois, probs, deltas, window, config):
     # Filter out background boxes
     keep = tf.where(class_ids > 0)[:, 0]
     # Filter out low confidence boxes
+    class_score_max = 0.8
     if config.DETECTION_MIN_CONFIDENCE:
-        conf_keep = tf.where(class_scores)[:, 0]
+        if class_score > class_score_max:
+            class_score_max =class_score
+        conf_keep = tf.where(class_scores_max)[:, 0]
         keep = tf.sets.set_intersection(tf.expand_dims(keep, 0),
                                         tf.expand_dims(conf_keep, 0))
         keep = tf.sparse_tensor_to_dense(keep)[0]
