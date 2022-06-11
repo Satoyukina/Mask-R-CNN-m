@@ -716,7 +716,7 @@ def refine_detections_graph(rois, probs, deltas, window, config):
     # Filter out background boxes
     keep = tf.where(class_ids > 0)[:, 0]
     # Filter out low confidence boxes
-    class_score_max = 0.8
+    class_score_max =tf.Variable(0.7)
     if config.DETECTION_MIN_CONFIDENCE:
         #if class_scores > class_score_max:
         #    class_score_max =class_scores
