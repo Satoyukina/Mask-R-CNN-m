@@ -724,9 +724,8 @@ def refine_detections_graph(rois, probs, deltas, window, config):
             class_score_max =class_scores
             return class_score_max
         def not_change():
-            class_scores = class_scores
-            #return None
-        tf.cond(class_scores > class_score_max, change_max, not_change)
+            return 0
+        class_score_max = tf.cond(class_scores > class_score_max, change_max, not_change)
         #class_score_max =class_scores
         #print(class_scores)
         conf_keep = tf.where(class_score_max >= config.DETECTION_MIN_CONFIDENCE)[:, 0]
