@@ -121,7 +121,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     ax.set_title(title)
 
     masked_image = image.astype(np.uint32).copy()
-    for i in range(N):
+    for i in range(1):
         color = colors[i]
 
         # Bounding box
