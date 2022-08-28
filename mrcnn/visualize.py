@@ -196,6 +196,8 @@ def display_differences(image,
         (overlaps[i, int(pred_match[i])]
             if pred_match[i] > -1 else overlaps[i].max()))
             for i in range(len(pred_match))]
+    print("IoU")
+    print(overlaps[i, int(pred_match[i])])
     # Set title if not provided
     title = title or "Ground Truth and Detections\n GT=green, pred=red, captions: score/IoU"
     # Display
