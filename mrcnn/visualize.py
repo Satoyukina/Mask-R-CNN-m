@@ -169,7 +169,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     if auto_show:
         plt.show()
 
-
+iou_sum = 0
 def display_differences(image,
                         gt_box, gt_class_id, gt_mask,
                         pred_box, pred_class_id, pred_score, pred_mask,
@@ -199,6 +199,8 @@ def display_differences(image,
     print("IoU")
     for i in range(len(pred_match)):
         print(overlaps[i])
+        iou_sum += overlaps[i]
+        print(iou_sum)
     # Set title if not provided
     title = title or "Ground Truth and Detections\n GT=green, pred=red, captions: score/IoU"
     # Display
